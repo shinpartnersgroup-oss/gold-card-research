@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>千葉修司様 特別講演会 金の強運カード製作リサーチ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+  :root {
+    --gold-light: #f5e6a3;
+    --gold: #d4a843;
+    --gold-dark: #b8860b;
+    --gold-deep: #8b6914;
+    --black: #1a1a1a;
+    --dark-bg: #0d0d0d;
+    --card-bg: #1c1c1c;
+    --text: #e8e0cc;
+    --text-muted: #a09880;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(ellipse at 50% 30%, rgba(212,168,67,0.15) 0%, transparent 60%),
+                linear-gradient(180deg, #0d0d0d 0%, #1a1510 50%, #0d0d0d 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+  }
+
+  .hero-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 30%, var(--gold-dark) 60%, var(--gold-light) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s ease-in-out infinite;
+    margin-bottom: 1rem;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .hero-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    border: 1px solid var(--gold-dark);
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold-dark);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ========== SECTIONS ========== */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 5rem 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-number {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+
+  .gold-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1.5rem auto;
+  }
+
+  /* ========== PLAN CARDS ========== */
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .plan-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(212,168,67,0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-dark);
+  }
+
+  .plan-card.recommended {
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212,168,67,0.1);
+  }
+
+  .plan-card.recommended::before {
+    content: '★ 最もおすすめ';
+    position: absolute;
+    top: 1rem;
+    right: -2rem;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--black);
+    padding: 0.3rem 3rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    transform: rotate(45deg);
+    z-index: 10;
+  }
+
+  .plan-image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+    background: #2a2520;
+  }
+
+  .plan-rank {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(13,13,13,0.85);
+    border: 1px solid var(--gold-dark);
+    color: var(--gold);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+  }
+
+  .plan-body {
+    padding: 1.5rem;
+  }
+
+  .plan-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .plan-price {
+    font-size: 1rem;
+    color: var(--gold-light);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .plan-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+
+  .plan-specs {
+    list-style: none;
+    padding: 0;
+    font-size: 0.82rem;
+  }
+
+  .plan-specs li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .plan-specs li::before {
+    content: '◆';
+    color: var(--gold-dark);
+    flex-shrink: 0;
+  }
+
+  .plan-cta {
+    display: block;
+    text-align: center;
+    margin-top: 1.2rem;
+    padding: 0.7rem 1.2rem;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-deep));
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s, transform 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .plan-cta:hover {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    transform: translateY(-2px);
+  }
+
+  .plan-cta-sub {
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--gold-dark);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .plan-cta-sub:hover {
+    color: var(--gold-light);
+  }
+
+  /* ========== PRODUCT GALLERY ========== */
+  .gallery-section {
+    background: linear-gradient(180deg, var(--dark-bg) 0%, #151210 50%, var(--dark-bg) 100%);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .gallery-item {
+    background: var(--card-bg);
+    border: 1px solid rgba(212,168,67,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212,168,67,0.08);
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    background: #2a2520;
+  }
+
+  .gallery-info {
+    padding: 1rem 1.2rem;
+  }
+
+  .gallery-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .gallery-meta {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .gallery-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--gold-dark);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .gallery-link:hover {
+    color: var(--gold-light);
+  }
+
+  .gallery-price {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(212,168,67,0.2), rgba(212,168,67,0.08));
+    border: 1px solid rgba(212,168,67,0.3);
+    color: var(--gold-light);
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .gallery-order {
+    display: inline-block;
+    margin-top: 0.4rem;
+    padding: 0.4rem 1rem;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-deep));
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .gallery-order:hover {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    transform: translateY(-1px);
+  }
+
+  /* ========== COMPARISON TABLE ========== */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 2rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    min-width: 850px;
+  }
+
+  thead th {
+    background: linear-gradient(135deg, rgba(212,168,67,0.15), rgba(212,168,67,0.05));
+    color: var(--gold);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--gold-dark);
+  }
+
+  tbody td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    vertical-align: middle;
+  }
+
+  tbody tr:hover {
+    background: rgba(212,168,67,0.03);
+  }
+
+  .stars {
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+
+  /* ========== VENDOR LIST ========== */
+  .vendor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .vendor-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(212,168,67,0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+
+  .vendor-card:hover {
+    border-color: var(--gold-dark);
+  }
+
+  .vendor-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.05rem;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .vendor-tag {
+    display: inline-block;
+    background: rgba(212,168,67,0.12);
+    color: var(--gold-dark);
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.8rem;
+  }
+
+  .vendor-details {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .vendor-details strong {
+    color: var(--text);
+  }
+
+  .vendor-link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    color: var(--gold-dark);
+    font-size: 0.82rem;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--gold-dark);
+    transition: color 0.2s;
+  }
+
+  .vendor-link:hover {
+    color: var(--gold-light);
+  }
+
+  /* ========== DESIGN ELEMENTS ========== */
+  .design-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .design-item {
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid rgba(212,168,67,0.1);
+    border-radius: 10px;
+    padding: 1.5rem 1rem;
+    transition: border-color 0.3s;
+  }
+
+  .design-item:hover {
+    border-color: var(--gold-dark);
+  }
+
+  .design-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .design-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .design-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  /* ========== REFERENCE ========== */
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .ref-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(212,168,67,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .ref-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background: #2a2520;
+  }
+
+  .ref-body {
+    padding: 1.2rem;
+  }
+
+  .ref-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .ref-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ========== ACTION PLAN ========== */
+  .action-section {
+    background: linear-gradient(180deg, var(--dark-bg), #151210);
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), var(--gold-dark), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 2.5rem;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: 16px;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--gold-dark);
+    border: 3px solid var(--dark-bg);
+  }
+
+  .timeline-step {
+    font-size: 0.75rem;
+    color: var(--gold-dark);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(212,168,67,0.1);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+
+  footer .logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    color: var(--gold-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 768px) {
+    .plan-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .vendor-grid { grid-template-columns: 1fr; }
+    .design-grid { grid-template-columns: repeat(2, 1fr); }
+    section { padding: 3rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-label">Special Lecture Limited Edition</p>
+    <h1 class="hero-title">金の強運カード<br>製作リサーチ</h1>
+    <div class="hero-name">千葉 修司 様</div>
+    <p class="hero-subtitle">特別講演会グッズとして最適な<br>ゴールドカード型お守りの徹底調査レポート</p>
+  </div>
+  <div class="scroll-hint">▼ SCROLL</div>
+</section>
+
+<!-- ==================== PLAN A/B/C ==================== -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <p class="section-number">— 01 —</p>
+      <h2 class="section-title">おすすめ製作プラン</h2>
+      <p class="section-subtitle">予算・目的に合わせた3つの提案</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="plan-grid">
+
+      <!-- Plan A -->
+      <div class="plan-card">
+        <div class="plan-rank">PLAN A</div>
+        <img class="plan-image" src="https://www.mmtc.co.jp/goldcard/img/index_im01_01.webp" alt="三菱マテリアル 純金カード" loading="lazy">
+        <div class="plan-body">
+          <h3 class="plan-name">純金K24カード</h3>
+          <p class="plan-price">52,360円〜228,360円 / 枚</p>
+          <p class="plan-desc">純度99.99%の純金を薄板に加工。三菱マテリアルトレーディングの品質保証付きで資産価値もある最高級路線。桐箱入りで格別の特別感。</p>
+          <ul class="plan-specs">
+            <li>素材：K24純金（99.99%）</li>
+            <li>サイズ：カード判 54×86mm</li>
+            <li>1g: 52,360円 / 5g: 228,360円</li>
+            <li>オリジナルデザイン対応</li>
+            <li>桐箱入り（+770円）</li>
+            <li>納期：校正完了後 約3週間</li>
+            <li>最小ロット：1枚〜</li>
+          </ul>
+          <a href="https://www.mmtc.co.jp/goldcard/order.html" class="plan-cta" target="_blank" rel="noopener">三菱マテリアル 注文ページへ</a>
+          <a href="https://jungold-oem.com/" class="plan-cta-sub" target="_blank" rel="noopener">JUNGOLD OEM・フルオーダーも対応 →</a>
+        </div>
+      </div>
+
+      <!-- Plan B (Recommended) -->
+      <div class="plan-card recommended">
+        <div class="plan-rank">PLAN B</div>
+        <img class="plan-image" src="https://icards.jp/wp07/wp-content/uploads/2024/07/gold-hairline01.jpg" alt="iCARDS ゴールドメタルカード" loading="lazy">
+        <div class="plan-body">
+          <h3 class="plan-name">ゴールドメッキ・メタルカード</h3>
+          <p class="plan-price">6,000円〜18,000円 / 枚</p>
+          <p class="plan-desc">ステンレスや真鍮ベースにゴールドメッキ加工。重厚な金属の質感とゴールドの輝きで、財布に入るサイズの強運カードに最適。1枚からオーダー可能。</p>
+          <ul class="plan-specs">
+            <li>素材：ステンレス/真鍮/チタン + ゴールドメッキ</li>
+            <li>サイズ：クレジットカードサイズ 85.6×54mm</li>
+            <li>エッチング＋レーザー刻印で龍・名前を彫刻</li>
+            <li>ゴールド/ローズゴールド/レインボー選択可</li>
+            <li>納期：2〜4週間</li>
+            <li>最小ロット：1枚〜（カードコンシェルジュ）</li>
+            <li>コスパ最強＋高級感抜群</li>
+          </ul>
+          <a href="https://bridge-co.com/card/metalcard.html" class="plan-cta" target="_blank" rel="noopener">カードコンシェルジュ 見積もりへ</a>
+          <a href="https://icards.jp/metalcard/" class="plan-cta-sub" target="_blank" rel="noopener">iCARDS（3枚〜）で見積もる →</a>
+        </div>
+      </div>
+
+      <!-- Plan C -->
+      <div class="plan-card">
+        <div class="plan-rank">PLAN C</div>
+        <img class="plan-image" src="https://www.kenbisha.com/cms_kbs/wp-content/uploads/2023/10/gold.jpg" alt="研美社 ゴールドコーティングメタルカード" loading="lazy">
+        <div class="plan-body">
+          <h3 class="plan-name">ゴールドコーティング + UV印刷</h3>
+          <p class="plan-price">5,000円〜15,000円 / 枚</p>
+          <p class="plan-desc">ゴールドコーティングされた金属ベースにUVインクジェットでフルカラーデザイン。写真やグラデーションも再現可能。手軽さと本物感のバランスが◎。</p>
+          <ul class="plan-specs">
+            <li>素材：ステンレス + ゴールドコーティング</li>
+            <li>UVインクジェットでフルカラー印刷可能</li>
+            <li>レーザー加工で名前・シリアル刻印</li>
+            <li>国内生産・短納期対応</li>
+            <li>納期：2〜3週間</li>
+            <li>最小ロット：小ロット対応</li>
+          </ul>
+          <a href="https://www.kenbisha.com/product/14333/" class="plan-cta" target="_blank" rel="noopener">研美社 見積もり・問い合わせへ</a>
+          <a href="https://metalcard.seicou.co.jp/" class="plan-cta-sub" target="_blank" rel="noopener">精工メタルカード（10枚〜）も比較 →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PRODUCT GALLERY ==================== -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-number">— 02 —</p>
+      <h2 class="section-title">実際の商品ギャラリー</h2>
+      <p class="section-subtitle">各業者・神社の金カード製品イメージ</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.mmtc.co.jp/goldcard/img/index_im02_01.webp" alt="三菱マテリアル 純金カード アート" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">三菱マテリアル 純金カード（アート）</p>
+          <p class="gallery-meta">K24純金（99.99%）/ オリジナルデザイン対応</p>
+          <p class="gallery-price">1g: 52,360円 / 5g: 228,360円（税込）</p>
+          <a href="https://www.mmtc.co.jp/goldcard/order.html" class="gallery-order" target="_blank" rel="noopener">注文・見積もりページへ</a>
+          <br><a href="https://www.mmtc.co.jp/goldcard/art/" class="gallery-link" target="_blank" rel="noopener">アートデザイン一覧を見る →</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.mmtc.co.jp/goldcard/img/index_im02_02.webp" alt="三菱マテリアル 純金カード 表彰" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">三菱マテリアル 純金カード（記念品）</p>
+          <p class="gallery-meta">K24純金 / 表彰・記念品・退職記念向け</p>
+          <p class="gallery-price">0.5g: 35,310円 / 1g: 52,360円（税込）</p>
+          <a href="https://www.mmtc.co.jp/goldcard/order.html" class="gallery-order" target="_blank" rel="noopener">注文・見積もりページへ</a>
+          <br><a href="https://www.mmtc.co.jp/goldcard/ready-made/j_0.html" class="gallery-link" target="_blank" rel="noopener">レディーメイドデザイン →</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://icards.jp/wp07/wp-content/uploads/2024/07/jujugold.jpg" alt="iCARDS ゴールドメタルカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">iCARDS ゴールドメタルカード</p>
+          <p class="gallery-meta">ステンレス×ゴールドメッキ / エッチング無料</p>
+          <p class="gallery-price">3枚 18,000円〜（+ゴールドメッキ25-30%増）</p>
+          <a href="https://icards.jp/metalcard/" class="gallery-order" target="_blank" rel="noopener">iCARDS 見積もり・発注へ</a>
+          <br><a href="https://icards.jp/" class="gallery-link" target="_blank" rel="noopener">iCARDS トップページ →</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://icards.jp/wp07/wp-content/uploads/2024/07/juju2.jpg" alt="iCARDS メタルカード デザイン例" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">iCARDS メタルカード（デザイン例）</p>
+          <p class="gallery-meta">自由裁断・切抜加工無料 / レインボーメッキも可</p>
+          <p class="gallery-price">3枚 18,000円〜（エッチング加工込み）</p>
+          <a href="https://icards.jp/metalcard/" class="gallery-order" target="_blank" rel="noopener">デザイン相談・発注へ</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://bridge-co.com/card/wp/wp-content/uploads/2020/01/metal_top3-min.jpg" alt="カードコンシェルジュ メタルカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">カードコンシェルジュ メタルカード</p>
+          <p class="gallery-meta">真鍮/ステンレス/チタン / 1枚からオーダー可</p>
+          <p class="gallery-price">1枚〜 要見積もり（ゴールド/シルバー/ブラック）</p>
+          <a href="https://bridge-co.com/card/metalcard.html" class="gallery-order" target="_blank" rel="noopener">見積もり・問い合わせへ</a>
+          <br><a href="https://bridge-co.com/card/metal-card" class="gallery-link" target="_blank" rel="noopener">メタルカード詳細ページ →</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://bridge-co.com/card/wp/wp-content/uploads/2019/01/metal_blogol-min.jpg" alt="カードコンシェルジュ 真鍮ゴールドカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">カードコンシェルジュ 真鍮ゴールド</p>
+          <p class="gallery-meta">真鍮製 / 四隅角丸 / ヘアラインゴールド+箔押し</p>
+          <p class="gallery-price">1枚〜 要見積もり（VIPカード仕様）</p>
+          <a href="https://bridge-co.com/card/highgradecard.html" class="gallery-order" target="_blank" rel="noopener">高級カード製作ページへ</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.kenbisha.com/cms_kbs/wp-content/uploads/2023/10/metal-1.png" alt="研美社 メタルカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">研美社 メタルカード</p>
+          <p class="gallery-meta">ステンレス / ゴールドコーティング対応</p>
+          <p class="gallery-price">小ロット対応 要見積もり</p>
+          <a href="https://www.kenbisha.com/product/14333/" class="gallery-order" target="_blank" rel="noopener">研美社 見積もり・問い合わせへ</a>
+          <br><a href="https://www.kenbisha.com/selectcard/metal/" class="gallery-link" target="_blank" rel="noopener">メタルカード素材選び →</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.kenbisha.com/cms_kbs/wp-content/uploads/2023/10/metal_uv01.jpg" alt="研美社 UV印刷メタルカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">研美社 UV印刷メタルカード</p>
+          <p class="gallery-meta">UVインクジェット + レーザー / フルカラー印刷</p>
+          <p class="gallery-price">小ロット対応 要見積もり（短納期可）</p>
+          <a href="https://www.kenbisha.com/product/14333/" class="gallery-order" target="_blank" rel="noopener">UV印刷カード 問い合わせへ</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://metalcard.seicou.co.jp/wp/wp-content/uploads/2025/06/mj02-768x599.jpg" alt="精工メタルカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">精工メタルカード</p>
+          <p class="gallery-meta">完全国内生産 / 超精密プレス / 0.2mm極薄</p>
+          <p class="gallery-price">10枚 86,570円（約8,657円/枚）/ 100枚 134,200円（約1,342円/枚）</p>
+          <a href="https://metalcard.seicou.co.jp/" class="gallery-order" target="_blank" rel="noopener">精工メタルカード 見積もりへ</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://baseec-img-mng.akamaized.net/images/item/origin/12ef2e252a584ce7c120870cfe63d46e.png" alt="JUNGOLD 純金 龍 お守り" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">JUNGOLD 純金「龍」お守り（約1g）</p>
+          <p class="gallery-meta">K24純金 / 約1g / 財布に入るお守りケース付き</p>
+          <p class="gallery-price">約38,000円/個（セミオーダー10個〜）</p>
+          <a href="https://jungold.base.shop/items/84222664" class="gallery-order" target="_blank" rel="noopener">JUNGOLDで購入する</a>
+          <br><a href="https://jungold.base.shop/categories/5832710" class="gallery-link" target="_blank" rel="noopener">龍シリーズ一覧 →</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://baseec-img-mng.akamaized.net/images/item/origin/ccc17c89447d0caa89e50a3c64302548.png" alt="JUNGOLD 純金龍 詳細" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">JUNGOLD 純金龍（約10g・フレーム付）</p>
+          <p class="gallery-meta">K24純金 / 約10g / 特製フレームケース付き</p>
+          <p class="gallery-price">約150,000円〜（金相場連動）</p>
+          <a href="https://jungold.base.shop/items/84222986" class="gallery-order" target="_blank" rel="noopener">10g龍の商品ページへ</a>
+          <br><a href="https://jungold-oem.com/" class="gallery-link" target="_blank" rel="noopener">法人OEM・フルオーダー →</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://baseec-img-mng.akamaized.net/images/item/origin/b203917cbd1cd7dbfdf76e90a3d5325e.png" alt="JUNGOLD 純金 福龍 小判" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">JUNGOLD 純金「福龍」小判（約1g）</p>
+          <p class="gallery-meta">K24純金 / 小判型 / 福の文字入り</p>
+          <p class="gallery-price">約38,000円/個（セミオーダー対応）</p>
+          <a href="https://jungold.base.shop/items/85155985" class="gallery-order" target="_blank" rel="noopener">福龍小判の購入ページへ</a>
+          <br><a href="https://jungold.base.shop/" class="gallery-link" target="_blank" rel="noopener">JUNGOLD全商品 →</a>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.mmtc.co.jp/goldcard/img/index_im03_01.webp" alt="三菱マテリアル 純金カード 制作例" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">三菱マテリアル 純金名刺</p>
+          <p class="gallery-meta">K24純金 / 名刺サイズ / 周年記念品に人気</p>
+          <p class="gallery-price">1g: 52,360円〜（桐箱+770円）</p>
+          <a href="https://www.mmtc.co.jp/goldcard/ready-made/a_0.html" class="gallery-order" target="_blank" rel="noopener">純金名刺デザインを見る</a>
+          <br><a href="https://www.mmtc.co.jp/goldcard/" class="gallery-link" target="_blank" rel="noopener">三菱マテリアル 純金カードTOP →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BUDGET-FRIENDLY 500-3000 YEN ==================== -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <p class="section-number">— 03 —</p>
+      <h2 class="section-title">お手頃価格帯（500〜3,000円）</h2>
+      <p class="section-subtitle">大量配布にも対応可能なコスパ重視の選択肢</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="gallery-grid">
+
+      <!-- PVC Gold Card - カード達人 -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.cartatsu.com/templates/default/dist/images/page/goldcard/01.png" alt="カード達人 PVCゴールドカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">PVCゴールドカード</p>
+          <p class="gallery-meta">PVC素材 / 金色カード / 0.76mm厚 / オリジナルデザイン印刷</p>
+          <p class="gallery-price">100枚 54,300円（約543円/枚）〜 1,000枚 74,000円（約74円/枚）</p>
+          <a href="https://www.cartatsu.com/goldcard" class="gallery-order" target="_blank" rel="noopener">カード達人 見積もり・発注へ</a>
+          <br><a href="https://www.cartatsu.com/cardtype" class="gallery-link" target="_blank" rel="noopener">全カード種類・価格表 →</a>
+        </div>
+      </div>
+
+      <!-- Hairline Gold Card - カード達人 -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.cartatsu.com/templates/default/dist/images/page/goldcard/02.png" alt="カード達人 ヘアラインゴールドカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">ヘアラインゴールドカード</p>
+          <p class="gallery-meta">金属質感のヘアライン箔 / 0.76mm厚 / つや消し金属風仕上げ</p>
+          <p class="gallery-price">100枚 31,900円（約319円/枚）〜 500枚まで小ロットがお得</p>
+          <a href="https://www.cartatsu.com/goldcard" class="gallery-order" target="_blank" rel="noopener">カード達人 見積もり・発注へ</a>
+        </div>
+      </div>
+
+      <!-- Buzz Planning VIP Gold Hairline -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.buzzcard.jp/wpbuzz/wp-content/themes/gw_theme1040/images/03185x.png" alt="バズプランニング ゴールドヘアラインVIPカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">ゴールドヘアライン VIPカード</p>
+          <p class="gallery-meta">ゴールドヘアライン / 箔押し対応 / ナンバリング可</p>
+          <p class="gallery-price">100枚 片面15,500円（約155円/枚）+ 箔押し9,200円〜</p>
+          <a href="https://www.buzzcard.jp/vip_card" class="gallery-order" target="_blank" rel="noopener">バズプランニング 見積もりへ</a>
+        </div>
+      </div>
+
+      <!-- Buzz Planning Matt Black -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.buzzcard.jp/wpbuzz/wp-content/themes/gw_theme1040/images/03171x.png" alt="バズプランニング マットブラックVIPカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">マットブラック×ゴールド箔 VIPカード</p>
+          <p class="gallery-meta">マットブラック / ゴールド箔押し / 高級感◎</p>
+          <p class="gallery-price">100枚 14,500円（約145円/枚）+ 金箔押し9,200円〜</p>
+          <a href="https://www.buzzcard.jp/vip_card" class="gallery-order" target="_blank" rel="noopener">バズプランニング 見積もりへ</a>
+        </div>
+      </div>
+
+      <!-- HAQU Gold Leaf Bookmark/Card -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://haqu.jp/wp-content/uploads/2018/08/bm_01-1.jpg" alt="HAQU 金箔しおり" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">HAQU 金沢金箔しおり（カード型）</p>
+          <p class="gallery-meta">本物の金沢金箔使用 / カード文字入れ可 / 10枚セット〜</p>
+          <p class="gallery-price">950円/枚（税込）〜 文字入れ+70円/枚</p>
+          <a href="https://haqu.jp/product/bookmark/shiori/" class="gallery-order" target="_blank" rel="noopener">HAQU 金箔しおり注文へ</a>
+          <br><a href="https://haqu.jp/product/" class="gallery-link" target="_blank" rel="noopener">全商品一覧 →</a>
+        </div>
+      </div>
+
+      <!-- HAQU Gold Leaf Business Card -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://haqu.jp/wp-content/uploads/2018/08/P1040730.jpg" alt="HAQU 金箔名刺" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">HAQU 金沢金箔名刺カード</p>
+          <p class="gallery-meta">本物の金沢金箔 / 名刺サイズ / 片面・両面対応</p>
+          <p class="gallery-price">片面 1,430円/枚 / 両面 1,980円/枚（税込・10枚セット）</p>
+          <a href="https://haqu.jp/product/card/business-card/" class="gallery-order" target="_blank" rel="noopener">HAQU 金箔名刺注文へ</a>
+        </div>
+      </div>
+
+      <!-- Hanwa VIP Gold Card -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.cartatsu.com/templates/default/dist/images/page/goldcard/03.png" alt="PVCゴールドカード デザイン例" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">ハンワ ゴールド箔押しVIPカード</p>
+          <p class="gallery-meta">ゴールド/シルバー/ブラック素材 / 箔押し1色 / 85.6×54mm</p>
+          <p class="gallery-price">100枚 48,180円（約482円/枚）〜 1,000枚 102,630円（約103円/枚）</p>
+          <a href="https://www.petcard.jp/choice/vip.html" class="gallery-order" target="_blank" rel="noopener">ハンワ VIPカード 見積もりへ</a>
+        </div>
+      </div>
+
+      <!-- Acrylic Amulet - Japanese Keyholder Industry -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://keyholder.bz/asdekImage/kcs/img/goodsCategoryImg/17005415863998IGjznkU/GOODSCATEGORY_IMG_MIDDELE_1.jpg" alt="アクリルお守り オリジナル" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">アクリルお守り（ゴールド印刷対応）</p>
+          <p class="gallery-meta">アクリル3mm厚 / UVインクジェット / 眼鏡紐付き / OPP個包装</p>
+          <p class="gallery-price">30個〜 338円/個 / 100個〜 283円/個 / 500個〜 242円/個</p>
+          <a href="https://keyholder.bz/acr_amulet.html" class="gallery-order" target="_blank" rel="noopener">日本キーホルダー工業 注文へ</a>
+        </div>
+      </div>
+
+      <!-- Ryokuyosha Foil Stamped Card -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://goods.ryokuyou.co.jp/img/cache/w720_h720_38c66d32-d5d2-4db1-8287-a34e72acb736.jpg" alt="緑陽社 箔押しカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">緑陽社 オンデマンド箔押しカード</p>
+          <p class="gallery-meta">金箔/銀箔 / 名刺・トレカサイズ / デジタル印刷+箔押し</p>
+          <p class="gallery-price">30枚 19,500円（約650円/枚）〜 300枚 23,400円（約78円/枚）</p>
+          <a href="https://goods.ryokuyou.co.jp/item/EP05/" class="gallery-order" target="_blank" rel="noopener">緑陽社 箔押しカード注文へ</a>
+        </div>
+      </div>
+
+      <!-- Card Concierge Hairline PVC -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://bridge-co.com/card/wp/wp-content/uploads/2019/01/metal_blog-3ol-min.jpg" alt="カードコンシェルジュ ヘアラインカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">カードコンシェルジュ ヘアラインPVCカード</p>
+          <p class="gallery-meta">ゴールドヘアライン / PVC / 箔押し対応 / 100枚〜</p>
+          <p class="gallery-price">100枚〜 要見積もり（メタルより安価なPVC版）</p>
+          <a href="https://bridge-co.com/card/pvc_hairline.html" class="gallery-order" target="_blank" rel="noopener">ヘアラインカード 見積もりへ</a>
+        </div>
+      </div>
+
+      <!-- Japan Card Printing Hairline -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.buzzcard.jp/wpbuzz/wp-content/themes/gw_theme1040/images/vvv1.png" alt="VIPカード ゴールド・シルバー・ブラック" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">リーベロカード ランク別VIPカード</p>
+          <p class="gallery-meta">ゴールド/シルバー/ブロンズ / ランク色分け / 箔押し対応</p>
+          <p class="gallery-price">100枚〜 要見積もり（ランク別セット割引あり）</p>
+          <a href="https://liberocard.jp/usage/vipcard/" class="gallery-order" target="_blank" rel="noopener">リーベロカード VIPカード →</a>
+          <br><a href="https://liberocard.jp/card/hairline/" class="gallery-link" target="_blank" rel="noopener">ヘアラインカード詳細 →</a>
+        </div>
+      </div>
+
+      <!-- Omamori Kobo Card Type -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://haqu.jp/wp-content/uploads/2018/08/bm_02-1.jpg" alt="金箔カード型お守り イメージ" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">御守工房 カード型本金メッキ御守</p>
+          <p class="gallery-meta">本金メッキ / 0.25mm薄型 / 細密デザイン再現 / オリジナル対応</p>
+          <p class="gallery-price">要見積もり（型代+製造費 / デザインサポート付き）</p>
+          <a href="https://omamori1.com/" class="gallery-order" target="_blank" rel="noopener">御守工房 問い合わせへ（TEL: 06-4307-3123）</a>
+        </div>
+      </div>
+
+      <!-- Kinpaku Kobo Sakuda -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://haqu.jp/wp-content/uploads/2018/08/P1040728.jpg" alt="金箔工芸さくだ お財布お守り" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">金箔工芸さくだ お財布お守り</p>
+          <p class="gallery-meta">金沢伝統金箔 / 約40種のデザイン / 金箔入りガラス勾玉守り等</p>
+          <p class="gallery-price">440〜550円/個（既製品）</p>
+          <a href="https://kinpakuya.jp/?mode=cate&cbid=2854949&csid=2" class="gallery-order" target="_blank" rel="noopener">金箔工芸さくだ オンラインショップへ</a>
+        </div>
+      </div>
+
+      <!-- Hakuoshi no Zuga -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://goods.ryokuyou.co.jp/img/cache/w720_h720_3f7e9712-3908-4680-9b75-36dbf82d4ec3.jpg" alt="箔押し印刷カード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">箔押しのズガ オリジナル箔押しカード</p>
+          <p class="gallery-meta">金箔押し / 名刺〜ポストカードサイズ / 低価格・高品質</p>
+          <p class="gallery-price">小ロット対応 要見積もり（業界最安クラス）</p>
+          <a href="https://www.zuga-haku.jp/" class="gallery-order" target="_blank" rel="noopener">箔押しのズガ 見積もりへ</a>
+        </div>
+      </div>
+
+      <!-- Asadaya Foil Pressing -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://goods.ryokuyou.co.jp/img/cache/w720_h720_192fd9cf-8fe4-4a87-afcd-27e344b37e17.jpg" alt="箔押し名刺 あさだ屋" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">あさだ屋 箔押し名刺・カード</p>
+          <p class="gallery-meta">箔押し専門店 / 高級特殊紙厳選 / 100枚〜 / 名入れ対応</p>
+          <p class="gallery-price">100枚〜 要見積もり（特殊紙+箔押し込み）</p>
+          <a href="https://haku-asadaya.com/user_data/meishi" class="gallery-order" target="_blank" rel="noopener">あさだ屋 箔押し名刺ページへ</a>
+        </div>
+      </div>
+
+      <!-- Card-ya VIP -->
+      <div class="gallery-item">
+        <img class="gallery-img" src="https://www.buzzcard.jp/wpbuzz/wp-content/themes/gw_theme1040/images/03188x.png" alt="カード屋ドットコム シルバーVIPカード" loading="lazy">
+        <div class="gallery-info">
+          <p class="gallery-title">カード屋ドットコム VIPカード</p>
+          <p class="gallery-meta">ゴールド/シルバー / 50枚〜小ロット / 同時製作割引あり</p>
+          <p class="gallery-price">50枚〜 対応（少部数で安価 / 同時製作割引）</p>
+          <a href="https://e-card-ya.com/vip" class="gallery-order" target="_blank" rel="noopener">カード屋ドットコム 見積もりへ</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== COMPARISON TABLE ==================== -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-number">— 04 —</p>
+      <h2 class="section-title">製作方法 比較表</h2>
+      <p class="section-subtitle">素材・コスト・高級感・耐久性を一覧比較</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>製作方法</th>
+            <th>1枚コスト目安</th>
+            <th>高級感</th>
+            <th>耐久性</th>
+            <th>最小ロット</th>
+            <th>主な発注先</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>純金K24カード</strong></td>
+            <td>35,000〜230,000円</td>
+            <td><span class="stars">★★★★★</span></td>
+            <td>◎（ラミネート保護）</td>
+            <td>1枚〜</td>
+            <td><a href="https://www.mmtc.co.jp/goldcard/order.html" class="gallery-link" target="_blank" rel="noopener">三菱マテリアル</a> / <a href="https://jungold-oem.com/" class="gallery-link" target="_blank" rel="noopener">JUNGOLD</a></td>
+          </tr>
+          <tr>
+            <td><strong>ゴールドメッキ金属カード</strong></td>
+            <td>1,500〜9,000円</td>
+            <td><span class="stars">★★★★☆</span></td>
+            <td>◎（金属ベース）</td>
+            <td>1枚〜</td>
+            <td><a href="https://bridge-co.com/card/metalcard.html" class="gallery-link" target="_blank" rel="noopener">カードコンシェルジュ</a> / <a href="https://icards.jp/metalcard/" class="gallery-link" target="_blank" rel="noopener">iCARDS</a></td>
+          </tr>
+          <tr>
+            <td><strong>エッチング金属カード</strong></td>
+            <td>600〜8,000円</td>
+            <td><span class="stars">★★★★☆</span></td>
+            <td>◎（腐食彫刻）</td>
+            <td>3枚〜</td>
+            <td><a href="https://icards.jp/metalcard/" class="gallery-link" target="_blank" rel="noopener">iCARDS</a> / <a href="https://metalcard.seicou.co.jp/" class="gallery-link" target="_blank" rel="noopener">精工メタルカード</a></td>
+          </tr>
+          <tr>
+            <td><strong>金箔貼り（木/紙ベース）</strong></td>
+            <td>500〜3,000円</td>
+            <td><span class="stars">★★★☆☆</span></td>
+            <td>○</td>
+            <td>10枚〜</td>
+            <td><a href="https://kinpakuya.jp/?mode=cate&cbid=2854949&csid=2" class="gallery-link" target="_blank" rel="noopener">金箔工芸さくだ</a></td>
+          </tr>
+          <tr>
+            <td><strong>箔押し印刷（紙/PVC）</strong></td>
+            <td>100〜500円</td>
+            <td><span class="stars">★★☆☆☆</span></td>
+            <td>○</td>
+            <td>30枚〜</td>
+            <td><a href="https://www.zuga-haku.jp/" class="gallery-link" target="_blank" rel="noopener">箔押しのズガ</a> / <a href="https://goods.ryokuyou.co.jp/item/EP05/" class="gallery-link" target="_blank" rel="noopener">緑陽社</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== VENDORS ==================== -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-number">— 05 —</p>
+      <h2 class="section-title">製作業者一覧</h2>
+      <p class="section-subtitle">オーダーメイド対応の主要業者</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="vendor-grid">
+
+      <div class="vendor-card">
+        <h3 class="vendor-name">三菱マテリアルトレーディング</h3>
+        <span class="vendor-tag">純金K24</span>
+        <div class="vendor-details">
+          <strong>最小ロット:</strong> 1枚〜<br>
+          <strong>価格:</strong> 1g: 52,360円 / 5g: 228,360円<br>
+          <strong>素材:</strong> K24純金（99.99%）<br>
+          <strong>納期:</strong> 校正完了後 約3週間<br>
+          <strong>特徴:</strong> 三菱ブランド品質保証、桐箱対応、資産価値あり
+        </div>
+        <a href="https://www.mmtc.co.jp/goldcard/" class="vendor-link" target="_blank" rel="noopener">公式サイト →</a>
+      </div>
+
+      <div class="vendor-card">
+        <h3 class="vendor-name">カードコンシェルジュ</h3>
+        <span class="vendor-tag">メタルカード</span>
+        <div class="vendor-details">
+          <strong>最小ロット:</strong> 1枚〜<br>
+          <strong>価格:</strong> 要見積もり<br>
+          <strong>素材:</strong> チタン / 真鍮 / ステンレス<br>
+          <strong>カラー:</strong> ゴールド / シルバー / マットブラック<br>
+          <strong>特徴:</strong> 1枚から製作可、レーザー個人名刻印対応、国産
+        </div>
+        <a href="https://bridge-co.com/card/metalcard.html" class="vendor-link" target="_blank" rel="noopener">公式サイト →</a>
+      </div>
+
+      <div class="vendor-card">
+        <h3 class="vendor-name">iCARDS</h3>
+        <span class="vendor-tag">メタルカード</span>
+        <div class="vendor-details">
+          <strong>最小ロット:</strong> 3枚〜<br>
+          <strong>価格:</strong> 3枚18,000円（ステンレス）+ ゴールドメッキ25-30%増<br>
+          <strong>素材:</strong> ステンレス / 銅 / アルミ<br>
+          <strong>特徴:</strong> エッチング無料、ゴールド・レインボーメッキ対応、自由裁断
+        </div>
+        <a href="https://icards.jp/metalcard/" class="vendor-link" target="_blank" rel="noopener">公式サイト →</a>
+      </div>
+
+      <div class="vendor-card">
+        <h3 class="vendor-name">精工メタルカード</h3>
+        <span class="vendor-tag">メタルカード</span>
+        <div class="vendor-details">
+          <strong>最小ロット:</strong> 10枚〜<br>
+          <strong>価格:</strong> 10枚 86,570円（約8,657円/枚）<br>
+          <strong>素材:</strong> ステンレス / 真鍮 / 銅<br>
+          <strong>納期:</strong> 3〜4週間<br>
+          <strong>特徴:</strong> 完全国内生産、超精密プレス、0.2mm極薄
+        </div>
+        <a href="https://metalcard.seicou.co.jp/" class="vendor-link" target="_blank" rel="noopener">公式サイト →</a>
+      </div>
+
+      <div class="vendor-card">
+        <h3 class="vendor-name">研美社</h3>
+        <span class="vendor-tag">メタルカード + UV印刷</span>
+        <div class="vendor-details">
+          <strong>最小ロット:</strong> 小ロット対応<br>
+          <strong>価格:</strong> 要見積もり<br>
+          <strong>素材:</strong> ステンレス（ゴールドコーティング対応）<br>
+          <strong>特徴:</strong> UVインクジェット + レーザー加工、フルカラー対応、短納期
+        </div>
+        <a href="https://www.kenbisha.com/product/14333/" class="vendor-link" target="_blank" rel="noopener">公式サイト →</a>
+      </div>
+
+      <div class="vendor-card">
+        <h3 class="vendor-name">JUNGOLD（株式会社RAIN）</h3>
+        <span class="vendor-tag">純金オーダーメイド</span>
+        <div class="vendor-details">
+          <strong>最小ロット:</strong> フルオーダー1個〜 / セミオーダー10個〜<br>
+          <strong>価格:</strong> 1g×10個で約38,000円/個<br>
+          <strong>素材:</strong> K24純金（99.9%）<br>
+          <strong>特徴:</strong> 500種以上の既存金型（龍・鳳凰等）、法人実績多数
+        </div>
+        <a href="https://jungold.base.shop/" class="vendor-link" target="_blank" rel="noopener">公式ショップ →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DESIGN ELEMENTS ==================== -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <p class="section-number">— 06 —</p>
+      <h2 class="section-title">カードに入れられるデザイン要素</h2>
+      <p class="section-subtitle">千葉修司様向け特別仕様のカスタマイズ案</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="design-grid">
+      <div class="design-item">
+        <span class="design-icon">龍</span>
+        <p class="design-label">龍モチーフ</p>
+        <p class="design-desc">強運・出世・成功の象徴。最も人気の縁起物デザイン</p>
+      </div>
+      <div class="design-item">
+        <span class="design-icon">鳳</span>
+        <p class="design-label">鳳凰モチーフ</p>
+        <p class="design-desc">再生・永遠・繁栄の象徴。華やかな格調高いデザイン</p>
+      </div>
+      <div class="design-item">
+        <span class="design-icon">強運</span>
+        <p class="design-label">開運文字</p>
+        <p class="design-desc">「強運」「金運」「必勝」「大願成就」など書道フォント</p>
+      </div>
+      <div class="design-item">
+        <span class="design-icon">名</span>
+        <p class="design-label">名前刻印</p>
+        <p class="design-desc">「千葉修司」をレーザー彫刻・エッチングで個別刻印</p>
+      </div>
+      <div class="design-item">
+        <span class="design-icon">No.</span>
+        <p class="design-label">シリアルナンバー</p>
+        <p class="design-desc">「No.001 / 100」で限定感を演出。レーザー可変対応</p>
+      </div>
+      <div class="design-item">
+        <span class="design-icon">QR</span>
+        <p class="design-label">QRコード</p>
+        <p class="design-desc">講演会特設ページ等へのリンクをエッチングで埋め込み</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== REFERENCE ==================== -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-number">— 07 —</p>
+      <h2 class="section-title">参考：神社の金カード型お守り</h2>
+      <p class="section-subtitle">日本で人気の金運カード型お守り</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="ref-grid">
+      <div class="ref-card">
+        <img class="ref-img" src="https://www.mmtc.co.jp/goldcard/img/index_im02_04.webp" alt="純金カード 記念品イメージ" loading="lazy">
+        <div class="ref-body">
+          <h3 class="ref-title">小網神社 ゴールドカード御守り</h3>
+          <p class="ref-desc">東京・日本橋の最強金運パワースポット。財布に入れるカード型の財運向上御守り。お稲荷大神・弁財天・福禄寿の三祭神。経営者・芸能人にも大人気。</p>
+        </div>
+      </div>
+      <div class="ref-card">
+        <img class="ref-img" src="https://www.mmtc.co.jp/goldcard/img/index_im02_05.webp" alt="純金カード 干支イメージ" loading="lazy">
+        <div class="ref-body">
+          <h3 class="ref-title">聖神社（秩父）和同開珎ゴールドカード</h3>
+          <p class="ref-desc">日本最初の流通貨幣「和同開珎」を祀る銭神様。金・銀・銅の3種で角度により見え方が変わる特殊加工。金運の最強パワースポットとして全国から参拝者。</p>
+        </div>
+      </div>
+      <div class="ref-card">
+        <img class="ref-img" src="https://baseec-img-mng.akamaized.net/images/item/origin/b203917cbd1cd7dbfdf76e90a3d5325e.png" alt="JUNGOLD 純金龍 お守り" loading="lazy">
+        <div class="ref-body">
+          <h3 class="ref-title">JUNGOLD 純金「龍」モチーフお守り</h3>
+          <p class="ref-desc">K24純金の指先サイズの芸術品。五爪の龍が珠を掴むデザイン。専用お守りケースで財布に入れて持ち歩ける。企業の記念品・法人利用の実績多数。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ACTION PLAN ==================== -->
+<section class="action-section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-number">— 08 —</p>
+      <h2 class="section-title">推奨アクションプラン</h2>
+      <p class="section-subtitle">講演会に間に合わせるためのステップ</p>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-step">STEP 01</p>
+        <h3 class="timeline-title">予算・数量を決定</h3>
+        <p class="timeline-desc">千葉修司さん1名向けの特別品か、講演会参加者全員分かで最適なプランが変わります。1枚なら純金（プランA）、複数枚ならメタルカード（プランB）がおすすめ。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-step">STEP 02</p>
+        <h3 class="timeline-title">デザインの方向性を決定</h3>
+        <p class="timeline-desc">龍 + 「強運」の書 + 「千葉修司」名入れが王道。講演会のテーマやロゴを入れることも可能。各業者にデザインサポートあり。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-step">STEP 03</p>
+        <h3 class="timeline-title">見積もり依頼（2〜3社同時）</h3>
+        <p class="timeline-desc">
+          <strong>高級路線:</strong> 三菱マテリアルトレーディング（TEL: 0120-171-556）<br>
+          <strong>コスパ路線:</strong> カードコンシェルジュ or iCARDS<br>
+          <strong>純金お守り:</strong> JUNGOLD（BASE経由で問い合わせ）
+        </p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-step">STEP 04</p>
+        <h3 class="timeline-title">発注（講演会の最低4週間前）</h3>
+        <p class="timeline-desc">デザイン校正 → 承認 → 製造。純金カードは校正後3週間、メタルカードは2〜4週間。余裕を持って講演会の1ヶ月前には発注完了を推奨。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-step">STEP 05</p>
+        <h3 class="timeline-title">受取・最終確認・講演会当日</h3>
+        <p class="timeline-desc">桐箱・専用ケースでの納品を指定。特別感のあるプレゼンテーションで千葉修司さんにお渡し。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <p class="logo">SIN PARTNERS</p>
+  <p>千葉修司様 特別講演会 金の強運カード 製作リサーチレポート</p>
+  <p>作成日: 2026年4月14日</p>
+</footer>
+
+</body>
+</html>
